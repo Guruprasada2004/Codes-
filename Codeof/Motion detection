@@ -1,0 +1,21 @@
+int pirPin = 14;  // PIR sensor output connected to GPIO14
+int ledPin = 2;   // Onboard LED (can change to any GPIO)
+
+void setup() {
+  pinMode(pirPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(115200);
+}
+
+void loop() {
+  int motion = digitalRead(pirPin);
+
+  if (motion == HIGH) {
+    Serial.println("Motion detected!");
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+
+  delay(200);  // To avoid flooding serial monitor
+}
